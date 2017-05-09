@@ -7,6 +7,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.utils import timezone
 # Create your models here.
+from hashtags.signals import parsed_hashtags
 from .validators import validate_content
 
 
@@ -37,11 +38,24 @@ class TweetManager(models.Manager):
         obj.save()
         return obj
 
+    def like_toggle(self,user , tweet_obj):
+        if user in tweet_obj.liked.all():
+            is_liked = False
+            tweet_obj.liked.remove(user)
+            return is_liked
+        else:
+            not_liked = True
+            tweet_obj.liked.add(user)
+            return not_liked
+
+
+
 
 class Tweet(models.Model):
     parent      = models.ForeignKey("self", blank=True, null=True)
     user        = models.ForeignKey(settings.AUTH_USER_MODEL)
     content     = models.CharField(max_length=140, validators=[validate_content])
+    liked       = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True,related_name="liked")
     updated     = models.DateTimeField(auto_now=True)
     timestamp   = models.DateTimeField(auto_now_add=True)
 
@@ -71,7 +85,8 @@ def tweet_save_reciever(sender, instance, created, *args, **kwargs):
         #print(username)
 
         hash_regex = r'#(?P<hashtag>[\w\d-]+)' 
-        m = re.findall(hash_regex,instance.content)
+        hashtags = re.findall(hash_regex,instance.content)
+        parsed_hashtags.send(sender = instance.__class__,hashtag_list = hashtags)
         #print(hashtag)
 
 

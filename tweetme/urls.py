@@ -26,11 +26,11 @@ from .views import home
 urlpatterns = [
     url(r'^admin/', admin.site.urls), #admin/
     url(r'^$', TweetListView.as_view(), name='home'), #/
-
     url(r'^tags/(?P<hashtag>.*)/$',HashTagView.as_view(), name='hashtag'),
 
     url(r'^tweet/', include('tweets.urls', namespace='tweet')),
     url(r'^api/tweet/', include('tweets.api.urls', namespace='tweet-api')),
+    url(r'^api/',include('accounts.api.urls',namespace='profile-api')),
     url(r'^', include('accounts.urls', namespace='profiles')),
 ]
 
