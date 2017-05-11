@@ -18,7 +18,7 @@ class TweetManager(models.Manager):
             og_parent = parent_obj.parent
         else:
             og_parent = parent_obj
-        
+
         qs = self.get_queryset().filter(
                 user=user, parent=og_parent
                 ).filter(
@@ -56,10 +56,11 @@ class Tweet(models.Model):
     user        = models.ForeignKey(settings.AUTH_USER_MODEL)
     content     = models.CharField(max_length=140, validators=[validate_content])
     liked       = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True,related_name="liked")
+    reply       = models.BooleanField(verbose_name='Is a reply?',default=False)
     updated     = models.DateTimeField(auto_now=True)
     timestamp   = models.DateTimeField(auto_now_add=True)
 
-    objects = TweetManager() 
+    objects = TweetManager()
 
     def __str__(self):
         return str(self.content)
@@ -84,7 +85,7 @@ def tweet_save_reciever(sender, instance, created, *args, **kwargs):
         m = re.findall(user_regex,instance.content)
         #print(username)
 
-        hash_regex = r'#(?P<hashtag>[\w\d-]+)' 
+        hash_regex = r'#(?P<hashtag>[\w\d-]+)'
         hashtags = re.findall(hash_regex,instance.content)
         parsed_hashtags.send(sender = instance.__class__,hashtag_list = hashtags)
         #print(hashtag)
