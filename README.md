@@ -14,6 +14,4 @@ Core Feature :-
 
 Some of the previews after running the project :-
 
-![Screenshot](screenshots/ss1.jpg)
-![Screenshot](screenshots/ss2.jpg)
-![Screenshot](screenshots/ss3.jpg)
+![](screenshots/ss1.jpg =100x20)
