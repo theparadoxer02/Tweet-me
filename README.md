@@ -14,4 +14,6 @@ Core Feature :-
 
 Some of the previews after running the project :-
 
-![](screenshots/ss1.jpg =100x20)
+<img src="./screenshots/ss1.jpg" width="250">
+<img src="./screenshots/ss2.jpg" width="250">
+<img src="./screenshots/ss3.jpg" width="250">
