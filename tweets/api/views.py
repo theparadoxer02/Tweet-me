@@ -100,5 +100,3 @@ class SearchAPIView(generics.ListAPIView):
                     Q(user__username__icontains=query)
                     )
         return qs
-
-    Contact GitHub API Training Shop Blog About

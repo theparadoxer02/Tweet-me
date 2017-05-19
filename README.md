@@ -12,8 +12,8 @@ Core Feature :-
 6. **HASHTAG FEATURE**
 7. **CUSTOM DJANGO SIGNALS**
 
-Some of the previews after running the projct :- 
+Some of the previews after running the project :-
 
-![Screenshot](screenshots/ss1.png)
-![Screenshot](screenshots/ss2.png)
-![Screenshot](screenshots/ss3.png)
+![Screenshot](screenshots/ss1.jpg)
+![Screenshot](screenshots/ss2.jpg)
+![Screenshot](screenshots/ss3.jpg)
