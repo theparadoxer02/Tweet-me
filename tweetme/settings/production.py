@@ -25,7 +25,7 @@ SECRET_KEY = '(^)xpu7m-5-2vm$6h&4t$g2$2!r^5s5**hbsuueb-2lo_61+2f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 
 # Application definition
@@ -131,8 +131,6 @@ import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-ALLOWED_HOSTS = ['*']
 
 DEBUG = False
 
